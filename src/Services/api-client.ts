@@ -1,4 +1,4 @@
-import axios, { CanceledError } from "axios";
+import axios, { AxiosRequestConfig, CanceledError } from "axios";
 
 export default axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -8,3 +8,4 @@ export default axios.create({
 });
 
 export { CanceledError };
+export type { AxiosRequestConfig };
