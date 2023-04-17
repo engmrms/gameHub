@@ -6,7 +6,7 @@ import PlatFormIconsList from "./PlatFormIconsList";
 
 const GameCard = ({ game }: { game: Game }) => {
   return (
-    <Card borderRadius={"10px"} overflow={"hidden"}>
+    <Card height={"100%"}>
       <Image src={imageCroppedUrl(game.background_image)} />
       <CardBody>
         <Heading fontSize={"2xl"}>{game.name}</Heading>
