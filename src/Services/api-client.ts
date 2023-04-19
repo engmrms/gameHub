@@ -6,6 +6,7 @@ export type { AxiosRequestConfig };
 export interface FetchResponse<T> {
   count: number;
   results: T[];
+  next: string | null;
 }
 
 export const axiosInstance = axios.create({
