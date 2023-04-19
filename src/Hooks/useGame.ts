@@ -1,5 +1,6 @@
 import { GameQuery } from "../App";
 
+import ms from "ms";
 import { Platform } from "./usePlatforms";
 
 import { useInfiniteQuery } from "react-query";
@@ -32,7 +33,7 @@ const useGame = (gameQuery: GameQuery) =>
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined;
     },
-    staleTime: 24 * 60 * 60 * 1000,
+    staleTime: ms("24h"),
   });
 
 export default useGame;

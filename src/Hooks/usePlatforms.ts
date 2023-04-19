@@ -1,6 +1,8 @@
 import { useQuery } from "react-query";
 import platforms from "../Data/platforms";
 import APIClient from "../Services/api-client";
+
+import ms from "ms";
 export interface Platform {
   id: number;
   name: string;
@@ -13,7 +15,7 @@ const usePlatforms = () =>
   useQuery({
     queryKey: ["platfroms"],
     queryFn: apiClient.getAll,
-    staleTime: 24 * 60 * 60 * 1000,
+    staleTime: ms("24h"),
     initialData: platforms,
   });
 
