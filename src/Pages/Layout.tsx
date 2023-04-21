@@ -4,10 +4,12 @@ import Navbar from "../Components/Navbar";
 
 const Layout = () => {
   return (
-    <Box>
+    <>
       <Navbar />
-      <Outlet />
-    </Box>
+      <Box padding={5}>
+        <Outlet />
+      </Box>
+    </>
   );
 };
 

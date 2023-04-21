@@ -1,22 +1,13 @@
 import ms from "ms";
-import { Platform } from "./usePlatforms";
 
 import { useInfiniteQuery } from "react-query";
 import APIClient, { FetchResponse } from "../Services/api-client";
+import { Game } from "../entities/Game";
 import useGameQueryStore from "../store";
-
-export interface Game {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
-  rating_top: number;
-}
 
 const apiClient = new APIClient<Game>("/games");
 
-const useGame = () => {
+const useGames = () => {
   const gameQuery = useGameQueryStore(s => s.gameQuery);
 
   return useInfiniteQuery<FetchResponse<Game>, Error>({
@@ -37,4 +28,4 @@ const useGame = () => {
     staleTime: ms("24h"),
   });
 };
-export default useGame;
+export default useGames;
