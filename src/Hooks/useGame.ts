@@ -1,10 +1,9 @@
-import { GameQuery } from "../App";
-
 import ms from "ms";
 import { Platform } from "./usePlatforms";
 
 import { useInfiniteQuery } from "react-query";
 import APIClient, { FetchResponse } from "../Services/api-client";
+import useGameQueryStore from "../store";
 
 export interface Game {
   id: number;
@@ -17,8 +16,10 @@ export interface Game {
 
 const apiClient = new APIClient<Game>("/games");
 
-const useGame = (gameQuery: GameQuery) =>
-  useInfiniteQuery<FetchResponse<Game>, Error>({
+const useGame = () => {
+  const gameQuery = useGameQueryStore(s => s.gameQuery);
+
+  return useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
     queryFn: ({ pageParam }) =>
       apiClient.getAll({
@@ -35,5 +36,5 @@ const useGame = (gameQuery: GameQuery) =>
     },
     staleTime: ms("24h"),
   });
-
+};
 export default useGame;
